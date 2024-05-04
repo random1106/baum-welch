@@ -1,6 +1,6 @@
 # Baum-Welch
 
-The code is the implementation of Baum-Welch algorithm for a hidden Markov model. 
+The code is the implementation of Baum-Welch algorithm to learn a Hidden Markov Model. 
 
 # Background
 
