@@ -8,4 +8,4 @@ The croupier in Crooked Casino™ is known to have two dice: a fair one and a lo
 
 # Output
 
-The most likely hidden sequence is saved in 'output.txt' with a sequence of 0, 1 numbers of length 3000. 0 represents the fair dice and 1 represents the loaded dice. 
+We use 0 to represent the fair dice and 1 to represent the loaded dice. The most likely hidden sequence is saved in 'output.txt' with a sequence of 0, 1 numbers of length 3000. 
