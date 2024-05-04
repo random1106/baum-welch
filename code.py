@@ -24,15 +24,13 @@ threshold = 0.01 # threshold for stopping
 
 for k in range(repeat):
   # randomly sample the initial probability
-  init_prob_unnormalized = np.random.random(dice_category)
-  init_prob = init_prob_unnormalized / init_prob_unnormalized.sum()
+  init_prob = np.random.dirichlet([0.9, 0.1])
 
   # randomly sample transition probability x->x
-  tran_prob_x_unnormalized = np.random.random((dice_category, dice_category))
-  row_sums = tran_prob_x_unnormalized.sum(axis = 1)
-  tran_prob_x = tran_prob_x_unnormalized / row_sums[:, np.newaxis] 
-
-  # randomly sample transition probability x->y, all the elements of the first row is given by 1/6 due to the fair dice. 
+  tran_prob_x = np.array([np.random.dirichlet([0.9, 0.1]), np.random.dirichlet([0.1, 0.9])])
+  
+  # randomly sample transition probability x->y, all the elements of the first row is given by 1/6 due to the fair dice
+  
   tran_prob_y_unnormalized = np.ones((dice_category, dice_val))
   tran_prob_y_unnormalized[1] = np.random.random(dice_val)
   row_sums = tran_prob_y_unnormalized.sum(axis = 1)
@@ -148,6 +146,8 @@ for t in range(total_time):
     dice[total_time-t-1] = np.argmax(log_Viterbi[total_time-t-1])
   else:
     dice[total_time-t-1] = np.argmax([np.log(final_tran_prob_x[j][dice[total_time-t]]) + log_Viterbi[total_time-t-1][j] for j in range(x_state_num)])
+
+np.savetxt('output.txt', dice)
 
 
 
